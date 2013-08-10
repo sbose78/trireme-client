@@ -22,6 +22,7 @@
     -->
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="http://api.phonegap.com/1.0/geolocation" /> 
+        <feature name="http://api.phonegap.com/1.0/camera" /> 
 
     <!--
         If you do not want any permissions to be added to your app, add the
