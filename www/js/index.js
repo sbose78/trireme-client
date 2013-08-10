@@ -50,7 +50,7 @@ var app = {
 
 
         // adding location details - step 1 , add listener
-    }
+    },
 
     onSuccess: function(position){
          var element = document.getElementById('geolocation');
@@ -62,7 +62,7 @@ var app = {
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
-     }
+     },
      onError: function(error){
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
