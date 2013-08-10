@@ -36,9 +36,14 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
          navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
+          var element = document.getElementById('geolocation');
+          element.innerHTML="STARTED...";
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+
+
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -53,7 +58,9 @@ var app = {
     },
 
     onSuccess: function(position){
-        alert("looks good");
+        var element = document.getElementById('geolocation');
+          element.innerHTML="SUCEESS...";
+
          var element = document.getElementById('geolocation');
          element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -65,6 +72,11 @@ var app = {
                             'Timestamp: '          + position.timestamp                    + '<br />';
      },
      onError: function(error){
+
+
+        var element = document.getElementById('geolocation');
+          element.innerHTML="FAILED..";
+
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
      }
