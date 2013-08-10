@@ -36,8 +36,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
          navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
-          var element = document.getElementById('geolocation');
-          element.innerHTML="STARTED...";
+          
 
     },
     // Update DOM on a Received Event
@@ -58,8 +57,6 @@ var app = {
     },
 
     onSuccess: function(position){
-        var element = document.getElementById('geolocation');
-          element.innerHTML="SUCEESS...";
 
          var element = document.getElementById('geolocation');
          element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
@@ -72,10 +69,6 @@ var app = {
                             'Timestamp: '          + position.timestamp                    + '<br />';
      },
      onError: function(error){
-
-
-        var element = document.getElementById('geolocation');
-          element.innerHTML="FAILED..";
 
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');

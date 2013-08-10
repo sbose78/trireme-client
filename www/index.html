@@ -19,10 +19,30 @@
 -->
 <html>
     <head>
+
+
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <script type="text/javascript">
+ document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        var element = document.getElementById('deviceProperties');
+
+        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
+                            'Device PhoneGap: ' + device.phonegap + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+    }
+
+</script>
+
         <title>Hello World</title>
     </head>
     <body>
@@ -32,20 +52,13 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-            
-            <p id="geolocation">
+
+            <div id="geolocation" class="blink">
 
                 .. loading location 
-            </p>
-        </div>
-
-        <div class="app1">
-            <h1>MY FORM</h1>
-            <div id="deviceready1" class="blink1">
-                
-                <input type="text" value="geo!">
-
             </div>
+
+             <div id="deviceProperties"> props....</div>
         </div>
 
 
