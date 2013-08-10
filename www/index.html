@@ -68,11 +68,12 @@
 
 
           capturePhoto();
+
            navigator.geolocation.getCurrentPosition(onGeoSuccess, onError);
     }
 
     function onGeoSuccess(position){
-
+            alert("geo.");
          var element = document.getElementById('geolocation');
          element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -82,6 +83,8 @@
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
+
+            alert(position.coords.latitude);
 
     }
 
