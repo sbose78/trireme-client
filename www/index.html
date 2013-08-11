@@ -69,10 +69,26 @@
 
 
           //capturePhoto();
-           navigator.accelerometer.getCurrentAcceleration(onAccelerometerSuccess, onError);
+          showConfirm();
+           //navigator.accelerometer.getCurrentAcceleration(onAccelerometerSuccess, onError);
 
            //navigator.geolocation.getCurrentPosition(onGeoSuccess, onError);
 
+    }
+
+    function onConfirm(buttonIndex) {
+        alert('You selected button ' + buttonIndex);
+    }
+
+    // Show a custom confirmation dialog
+    //
+    function showConfirm() {
+        navigator.notification.confirm(
+            'You are the winner!', // message
+             onConfirm,            // callback to invoke with index of button pressed
+            'Game Over',           // title
+            'Restart,Exit'         // buttonLabels
+        );
     }
 
      function onAccelerometerSuccess(acceleration) {
