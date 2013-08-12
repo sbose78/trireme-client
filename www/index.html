@@ -28,22 +28,7 @@
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript">
 
-       /*
- document.addEventListener("deviceready", onDeviceReady, false);
-
-    // PhoneGap is ready
-    //
-    function onDeviceReady() {
-        var element = document.getElementById('deviceProperties');
-
-        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
-                            'Device PhoneGap: ' + device.phonegap + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />';
-    }
-
-*/
+   
 
      document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -55,51 +40,25 @@
 
     function onDeviceReady() {
       
-            alert("deviceready");
-         var element = document.getElementById('deviceProperties');
+         alert("device is ready");
+         document.getElementById("read_status").innerHTML("device is ready!");
 
-            pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-
+        var element = document.getElementById('deviceProperties');
         element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
                             'Device PhoneGap: ' + device.phonegap + '<br />' + 
                             'Device Platform: ' + device.platform + '<br />' + 
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />';
 
+        navigator.geolocation.getCurrentPosition(onGeoSuccess, onError);
 
-          //capturePhoto();
-          showConfirm();
-           //navigator.accelerometer.getCurrentAcceleration(onAccelerometerSuccess, onError);
-
-           //navigator.geolocation.getCurrentPosition(onGeoSuccess, onError);
-
+       
     }
 
-    function onConfirm(buttonIndex) {
-        alert('You selected button ' + buttonIndex);
-    }
-
-    // Show a custom confirmation dialog
-    //
-    function showConfirm() {
-        navigator.notification.confirm(
-            'You are the winner!', // message
-             onConfirm,            // callback to invoke with index of button pressed
-            'Game Over',           // title
-            'Restart,Exit'         // buttonLabels
-        );
-    }
-
-     function onAccelerometerSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
-    }
+     
 
     function onGeoSuccess(position){
-            alert("geo.");
+         alert("geo.");
          var element = document.getElementById('geolocation');
          element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -110,48 +69,10 @@
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
 
-            alert(position.coords.latitude);
+          alert(position.coords.latitude);
 
     }
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64-encoded image data
-      // console.log(imageData);
-
-      // Get image handle
-      //
-      var smallImage = document.getElementById('myImg');
-
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
-
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
-
-   
-    // Called if something bad happens.
-    //
     function onFail(message) {
       alert('Failed because: ' + message);
     }
@@ -164,8 +85,8 @@
         <div class="app">
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <p class="read_status">Connecting to Device</p>
+               
             </div>
 
             <div id="geolocation" class="blink">
@@ -174,15 +95,9 @@
             </div>
 
              <div id="deviceProperties"> props....</div>
-             <img id="myImg" src=""/>
+           
         </div>
 
 
-      
-      <!--  <script type="text/javascript" src="js/index.js"></script>  
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    -->
     </body>
 </html>
