@@ -29,6 +29,8 @@
     <feature name="http://api.phonegap.com/1.0/network"/>
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/accelerometer"/>
+    <feature name="http://api.phonegap.com/1.0/InAppBrowser"/>
+
 
     <!--
         If you do not want any permissions to be added to your app, add the

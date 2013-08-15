@@ -64,8 +64,8 @@
 
     function onDeviceReady() {
       
-         alert("device is ready");
-         document.getElementById("read_status").innerHTML="device is ready!";
+        alert("device is ready");
+        document.getElementById("read_status").innerHTML="device is ready!";
 
         var element = document.getElementById('deviceProperties');
         element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
@@ -77,9 +77,12 @@
         navigator.geolocation.getCurrentPosition(onGeoSuccess, onFail);
         navigator.accelerometer.getCurrentAcceleration(onAccSuccess, onFail);
 
-
-       
-    }
+        var ref = window.open('http://apache.org', '_blank', 'location=yes');
+        ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+        ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+        ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
+        ref.addEventListener('exit', function(event) { alert(event.type); });
+  }
 
 
   function onAccSuccess(acceleration){
