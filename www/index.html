@@ -102,9 +102,44 @@
     var image = document.getElementById('myImage');
     alert(imageURI);
     image.src = imageURI;
-}
+
+    
+
+    saveImageToDisk(imageURI):
+ }
 
 
+  function saveImageToDisk(entry)
+  {
+          window.resolveLocalFileSystemURI(file, resolveOnFSSuccess, onFail); 
+  }
+
+  function resolveOnFSSuccess(entry)
+  {
+
+     var d = new Date();
+    var n = d.getTime();
+    //new file name
+    var newFileName = n + "-sbose.jpg";
+    var myFolderApp = "MyVacationPics";
+
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+    //The folder is created if doesn't exist
+                              fileSys.root.getDirectory( myFolderApp,
+
+                                              {create:true, exclusive: false},
+                                              function(directory) {
+                                                  entry.moveTo(directory, newFileName,  successMove, onFail);
+                                              },
+                                              onFail);
+                              },
+           onFail);
+
+  }
+
+  function successMove(entry){
+      alert("Successfully saved on disk "+ entry.fullPath);
+  }
 
   function getContacts() 
   {
