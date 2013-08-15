@@ -45,6 +45,8 @@
              <div id="deviceProperties"> props....</div>
 
              <div id="acc">acc data..</div>
+
+             <img id="myImage">img.</img>
            
         </div>
 
@@ -74,17 +76,55 @@
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />';
 
-        navigator.geolocation.getCurrentPosition(onGeoSuccess, onFail);
-        navigator.accelerometer.getCurrentAcceleration(onAccSuccess, onFail);
 
+      navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 50, 
+    destinationType: Camera.DestinationType.FILE_URI }); 
+
+
+
+       // getContacts();                            
+
+        /*navigator.geolocation.getCurrentPosition(onGeoSuccess, onFail);
+        navigator.accelerometer.getCurrentAcceleration(onAccSuccess, onFail);
+        */
+
+/*
         var ref = window.open('http://apache.org', '_blank', 'location=yes');
         ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
         ref.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
         ref.addEventListener('exit', function(event) { alert(event.type); });
+
+  */
   }
 
+  function onCameraSuccess(imageURI) {
+    var image = document.getElementById('myImage');
+    alert(imageURI);
+    image.src = imageURI;
+}
 
+
+
+  function getContacts() 
+  {
+                // find all contacts with 'Bob' in any name field
+                var options = new ContactFindOptions();
+                options.filter = "";
+                var fields = ["displayName", "name"];
+                navigator.contacts.find(fields, onContactsSuccess, onFail, options);
+  }
+
+            // onSuccess: Get a snapshot of the current contacts
+
+   function onContactsSuccess(contacts) 
+   {
+          for (var i = 0; i < contacts.length; i++) {
+                  console.log("Display Name = " + contacts[i].displayName);
+          }
+  }
+
+          
   function onAccSuccess(acceleration){
     alert('acc');
      var element = document.getElementById('deviceProperties');
