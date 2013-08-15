@@ -103,7 +103,7 @@
     alert(imageURI);
     image.src = imageURI;
 
-    
+
 
     saveImageToDisk(imageURI):
  }
@@ -111,7 +111,7 @@
 
   function saveImageToDisk(entry)
   {
-          window.resolveLocalFileSystemURI(file, resolveOnFSSuccess, onFail); 
+          window.resolveLocalFileSystemURI(entry, resolveOnFSSuccess, onFail); 
   }
 
   function resolveOnFSSuccess(entry)
@@ -123,7 +123,7 @@
     var newFileName = n + "-sbose.jpg";
     var myFolderApp = "MyVacationPics";
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
     //The folder is created if doesn't exist
                               fileSys.root.getDirectory( myFolderApp,
 
