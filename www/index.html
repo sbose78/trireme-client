@@ -186,10 +186,11 @@
           $.ajax({
              type: "POST",
              dataType: 'json',
-             url: "http://health-nodejstest.rhcloud.com/similarity",
-             data:  {"report":"cancer"} ,
+             url: "http://trireme.j.layershift.co.uk/api/get",
+             data:  {"car_image_data": imageData} ,
              success: function(msg) {
-                alert("Form Submitted: "+msg[0].date);
+                  var jsonstring = JSON.stringify(msg);
+                alert("Form Submitted: "+jsonstring);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
