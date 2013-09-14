@@ -186,12 +186,16 @@
              type: "POST",
              dataType: 'json',
              url: "http://trireme.j.layershift.co.uk/api/get",
-             data: { "card_image_data": imageData },
+             data:  imageData ,
              success: function(msg) {
                 alert("Form Submitted: "+msg[0].card_holder_name);
-                //$("input#card-type").attr("value",msg[0].card_name);
+             //   $("input#card-type").attr("value",msg[0].card_name);
               
              }
+             error: function(xhr, textStatus, errorThrown){
+                alert('request failed');
+            }
+
           });
 
       
