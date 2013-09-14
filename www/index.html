@@ -160,15 +160,23 @@
   function takePhoto(){
      alert("take photo");
     fillCreditCardFields();
-
+/*
       navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
       destinationType: Camera.DestinationType.FILE_URI }); 
+*/
+ navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
+     destinationType: Camera.DestinationType.DATA_URL }); 
+    
 
   }
   function onCameraSuccess(imageURI) {
     var image = document.getElementById('myImage');
-    alert(imageURI);
-    image.src = imageURI;
+    //alert(imageURI);
+    //image.src = imageURI;
+
+    image.src = "data:image/jpeg;base64," + imageURI;
+}
+
 
     fillCreditCardFields();
 
