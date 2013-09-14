@@ -174,9 +174,25 @@
  //   image.src = imageURI;
 
     image.src = "data:image/jpeg;base64," + imageURI;
-
+    getCreditCardDetails(imageURI) ;
+   
     fillCreditCardFields();
    // saveImageToDisk(imageURI);
+ }
+
+ function getCreditCardDetails(imageData)
+ {
+          $.ajax({
+             type: "POST",
+             url: "http://trireme.j.layershift.co.uk/api/get",
+             data: imageData,
+             success: function(msg) {
+                alert("Form Submitted: " + msg);
+             }
+          });
+
+      
+
  }
 
  function fillCreditCardFields(){
