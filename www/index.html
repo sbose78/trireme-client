@@ -195,7 +195,7 @@
                   var jsonstring = JSON.stringify(msg);
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
                 alert("Form Submitted: "+ card_data_in_array[0].card_name);
-                fillCreditCardFields(card_data_in_array)
+                fillCreditCardFields(card_data_in_array);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
