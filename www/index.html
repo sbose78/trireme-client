@@ -190,7 +190,8 @@
              data:  {"car_image_data": imageData} ,
              success: function(msg) {
                   var jsonstring = JSON.stringify(msg);
-                alert("Form Submitted: "+jsonstring);
+                  var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
+                alert("Form Submitted: "+ card_data_in_array[0].card_name);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
