@@ -26,37 +26,87 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
        
+        
+          <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+          <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+  
 
-        <title>Hello World</title>
+   
+        <title>OptiPay</title>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p id="read_status">Connecting to Device</p>
+
+      <div class="navbar navbar-inverse navbar-fixed-top" >
+      <div class="navbar-inner">
+        <div class="container" style="padding-left:5px;">
+        
+          <a class="brand" href="#" id="project_name">  Trireme  </a>
+          <a class="brand" href="#" style="font-size:80%">  Cards </a>
+          <a class="brand" href="#" style="font-size:80%">  Add </a>
+
+          <!--
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#">Groups</a></li>
+              <li><a href="#about">Account</a></li>
+            </ul>
+          </div></.nav-collapse -->
+          
+        </div>
+      </div>
+    </div>
+
+
+   <br><br>
+        <div class="container" >
+             <div class="row-fluid" id="fixed">
+             
+                <div class="span6">
+<br><br><br><br>
+                       
+
+                       <div class="app">
+                          <h1>Opti-pay</h1>
+                          <div id="deviceready" class="blink">
+                              <p id="read_status">Connecting to Device</p>
+                             
+                          </div>
+
+                          <div id="geolocation" class="blink">
+
+                              .. loading location 
+                          </div>
+
+                           <div id="deviceProperties"> props....</div>
+
+                           <div id="acc">acc data..</div>
+
+                           <img id="myImage" alt="Nope------">img.</img>
+                         
+                     </div>
+
+
+                      <form id="submission_form">
+                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="SCAN CARD"/> 
+                      </form>
+                       
+                </div>
+
+                <div class="span6">
                
-            </div>
-
-            <div id="geolocation" class="blink">
-
-                .. loading location 
-            </div>
-
-             <div id="deviceProperties"> props....</div>
-
-             <div id="acc">acc data..</div>
-
-             <img id="myImage">img.</img>
-           
+                    </div>
+                </div>
         </div>
 
-
- <script type="text/javascript" src="phonegap.js"></script>
+<!--
+       
+-->
+ <!--script type="text/javascript" src="phonegap.js"></script-->
         <script type="text/javascript">
 
    
 
-     document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     // device APIs are available
     //
@@ -78,7 +128,7 @@
 
 
       navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 50, 
-    destinationType: Camera.DestinationType.FILE_URI }); 
+      destinationType: Camera.DestinationType.FILE_URI }); 
 
 
 
@@ -105,7 +155,7 @@
 
 
 
-    saveImageToDisk(imageURI):
+    saveImageToDisk(imageURI);
  }
 
 
