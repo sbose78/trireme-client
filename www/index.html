@@ -250,7 +250,7 @@ function populateDB(tx){
 function querySuccess(tx, results) {
     //console.log("Returned rows = " + results.rows.length);
     // this will be true since it was a select statement and so rowsAffected was 0
-     alert ( "The number of rows affected : " + results.rowsAffected + " -- " + rows.insertId) ;
+     alert ( "The number of rows affected : " + results.rowsAffected + " -- " + results.insertId) ;
        //console.log('No rows affected!');
         //return false;
     
