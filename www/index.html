@@ -64,13 +64,23 @@
                    <div class="span6">
                                    <br><br><br><br>
 
-                        
-                       
-                          <input type="text" placeholder="Type something…"/>
-
-                          <a  class="btn btn-large" href="#">
+                          <a  onclick="takePhoto()"  class="btn btn-large" href="#">
                             <i class="icon-camera"></i>&nbsp; Camera
-                          </a>
+                          </a> <br><br>
+                       
+                          <input type="text" id="card-number" placeholder="Card number"/>
+
+                          <br>
+                          <input type="text" id="card-expiry" placeholder="Card expiry"/>
+
+                          <br>
+                          <input type="text" id="card-name" placeholder="Card name"/>
+                          <br>
+                          <input type="text" id="card-cvv" placeholder="Card cvv"/>
+                          <br>
+                          <input type="text" id="card-type" placeholder="Card type"/>
+
+                        
                         
                         <br><br>
                    <div class="app1">
@@ -149,11 +159,10 @@
   }
   function takePhoto(){
      alert("take photo");
+    fillCreditCardFields();
 
-    navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
+      navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
       destinationType: Camera.DestinationType.FILE_URI }); 
-
-
 
   }
   function onCameraSuccess(imageURI) {
@@ -161,9 +170,23 @@
     alert(imageURI);
     image.src = imageURI;
 
+    fillCreditCardFields();
+
 
 
     saveImageToDisk(imageURI);
+ }
+
+ function fillCreditCardFields(){
+        
+    $("input#card-number").attr("value","444212341234124");
+    $("input#card-type").attr("value","MAESTRO");
+    $("input#card-expiry").attr("value","12/14");
+    $("input#card-name").attr("value","SHOUBHIK BOSE");
+    $("input#card-CVV").attr("value","233");
+    
+
+
  }
 
 
