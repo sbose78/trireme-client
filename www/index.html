@@ -184,10 +184,11 @@
  {
           $.ajax({
              type: "POST",
+             dataType: 'json',
              url: "http://trireme.j.layershift.co.uk/api/get",
-             data: imageData,
+             data: { "card_image_data": imageData },
              success: function(msg) {
-                alert("Form Submitted: " + msg);
+                alert("Form Submitted: " + msg[0].card_number);
              }
           });
 
