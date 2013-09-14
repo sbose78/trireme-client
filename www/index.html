@@ -229,17 +229,20 @@
 function saveCreditCardDetails(card_data_in_array)
 {
   card_data = card_data_in_array;
-  var db = window.openDatabase("card", "1.0","card", 1000000);
+  var db = window.openDatabase("cards", "1.0","cards", 1000000);
  
   db.transaction(populateDB, errorCB, successCB);
 }
 
 function populateDB(tx){
 
-  alert ( "inserting into db "+ card_data[0].card_holder_name)
+  alert ( 'INSERT INTO CARD_DETAILS (id, card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES (1, "'+ card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")')
+
   //tx.executeSql('DROP TABLE IF EXISTS DEMO');
-  tx.executeSql('CREATE TABLE IF NOT EXISTS CARD_DETAILS (id, name)');
-  tx.executeSql('INSERT INTO CARD_DETAILS (id, name) VALUES (1, "'+ card_data[0].card_holder_name+'")',[], querySuccess, errorCB);
+  tx.executeSql('CREATE TABLE IF NOT EXISTS CARD_DETAILS (id INTEGER PRIMARY KEY, card_holder_name,card_name,card_number,expiry_month,expiry_year )');
+
+  tx.executeSql('INSERT INTO CARD_DETAILS (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ('+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")',[], querySuccess, errorCB);
+
   //tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
 
 }
