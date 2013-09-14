@@ -246,9 +246,11 @@ function populateDB(tx){
 
   tx.executeSql('INSERT INTO CARD_DETAIL (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ("'+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")',[], querySuccess, errorCB);
 */
- 
-  tx.executeSql('CREATE TABLE IF NOT EXISTS CA (card_holder_name)');
-  tx.executeSql('INSERT INTO CA (card_holder_name) VALUES ("hey")',[], querySuccess, errorCB);
+  //tx.executeSql('DROP TABLE IF EXISTS DEMO');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+    tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+
 
 
   //tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
@@ -256,17 +258,19 @@ function populateDB(tx){
 }
 function queryDB(tx) {
     tx.executeSql('SELECT * FROM CA', [], querySuccess_select, errorCB);
+        tx.executeSql('SELECT * FROM DEMO', [], querySuccess_select, errorCB);
+
 }
 
 function querySuccess_select(tx, results) {
-    console.log("Returned rows = " + results.rows.length);
+    alert("Returned rows = " + results.rows.length);
     // this will be true since it was a select statement and so rowsAffected was 0
     if (!results.rowsAffected) {
-        console.log('No rows affected!');
+        alert('No rows affected!');
         return false;
     }
     // for an insert statement, this property will return the ID of the last inserted row
-    console.log("Last inserted row ID = " + results.insertId);
+   alert("Last inserted row ID = " + results.insertId);
 }
 
 function querySuccess(tx, results) {
