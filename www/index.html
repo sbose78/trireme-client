@@ -61,47 +61,50 @@
         <div class="container" >
              <div class="row-fluid" id="fixed">
              
-                <div class="span6">
-<br><br><br><br>
+                   <div class="span6">
+                                   <br><br><br><br>
+
+                        
                        
+                          <input type="text" placeholder="Type something…"/>
 
-                       <div class="app">
-                          <h1>Opti-pay</h1>
-                          <div id="deviceready" class="blink">
-                              <p id="read_status">Connecting to Device</p>
-                             
-                          </div>
+                          <a  class="btn btn-large" href="#">
+                            <i class="icon-camera"></i>&nbsp; Camera
+                          </a>
+                        
+                        <br><br>
+                   <div class="app1">
+                            <img id="myImage" alt="Nope------"/>
+                         </div>
+                  </div>
 
-                          <div id="geolocation" class="blink">
-
-                              .. loading location 
-                          </div>
-
-                           <div id="deviceProperties"> props....</div>
-
-                           <div id="acc">acc data..</div>
-
-                           <img id="myImage" alt="Nope------">img.</img>
-                         
-                     </div>
-
-
-                      <form id="submission_form">
-                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="SCAN CARD"/> 
-                      </form>
-                       
-                </div>
 
                 <div class="span6">
-               
-                    </div>
+                    <br><br><br><br>
+ 
+                            
+
+                            <a onclick="takePhoto()" class="btn btn-large" href="#"><i class="icon-plus"></i> Add </a>
+                                    &nbsp;&nbsp;
+                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="Scanned cards"/> 
+                       
                 </div>
+            </div>
         </div>
+
+
+
+
+         
+
+
 
 <!--
        
 -->
- <script type="text/javascript" src="phonegap.js"></script>
+ <!--script type="text/javascript" src="phonegap.js"></script-->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+
         <script type="text/javascript">
 
    
@@ -118,7 +121,7 @@
       
         alert("device is ready");
         document.getElementById("read_status").innerHTML="device is ready!";
-
+/*
         var element = document.getElementById('deviceProperties');
         element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
                             'Device PhoneGap: ' + device.phonegap + '<br />' + 
@@ -126,11 +129,8 @@
                             'Device UUID: '     + device.uuid     + '<br />' + 
                             'Device Version: '  + device.version  + '<br />';
 
-
-      navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 50, 
-      destinationType: Camera.DestinationType.FILE_URI }); 
-
-
+*/
+      
 
        // getContacts();                            
 
@@ -147,7 +147,15 @@
 
   */
   }
+  function takePhoto(){
+     alert("take photo");
 
+    navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
+      destinationType: Camera.DestinationType.FILE_URI }); 
+
+
+
+  }
   function onCameraSuccess(imageURI) {
     var image = document.getElementById('myImage');
     alert(imageURI);
@@ -244,3 +252,19 @@
 
     </body>
 </html>
+    <!--
+                          <h1>Opti-pay</h1>
+                          <div id="deviceready" class="blink">
+                              <p id="read_status">Connecting to Device</p>
+                             
+                          </div>
+
+                          <div id="geolocation" class="blink">
+
+                              .. loading location 
+                          </div>
+
+                           <div id="deviceProperties"> props....</div>
+
+                           <div id="acc">acc data..</div>
+      -->
