@@ -161,7 +161,7 @@
   }
   function takePhoto(){
      alert("take photo");
-    fillCreditCardFields();
+  //  fillCreditCardFields();
 /*
       navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
       destinationType: Camera.DestinationType.FILE_URI }); 
@@ -211,11 +211,13 @@
 
  function fillCreditCardFields(card_data_in_array){
         
-    $("input#card_number").attr("value",card_data_in_array[0].card_number);
-    $("input#card_name").attr("value",card_data_in_array[0].card_name);
-    $("input#card_holder_name").attr("value",card_data_in_array[0].card_holder_name);
-    $("input#expiry_month").attr("value",card_data_in_array[0].expiry_month);
-    $("input#expiry_year").attr("value",card_data_in_array[0].expiry_year);
+
+
+    $("input#card_number").attr("value",""+card_data_in_array[0].card_number);
+    $("input#card_name").attr("value",""+card_data_in_array[0].card_name);
+    $("input#card_holder_name").attr("value",""+card_data_in_array[0].card_holder_name);
+    $("input#expiry_month").attr("value",""+card_data_in_array[0].expiry_month);
+    $("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
     
 
 
