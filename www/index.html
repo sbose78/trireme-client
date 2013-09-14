@@ -229,14 +229,14 @@
 function saveCreditCardDetails(card_data_in_array)
 {
   card_data = card_data_in_array;
-  var db = window.openDatabase("cards1", "1.0","cards1", 1000000);
+  var db = window.openDatabase("cards2", "1.0","cards2", 1000000);
  
   db.transaction(populateDB, errorCB, successCB);
 }
 
 function populateDB(tx){
 
-  alert ( 'INSERT INTO CARD_DETAILS (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ('+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")');
+  alert ( 'INSERT INTO CARD_DETAILS (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ("'+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")');
 
   //tx.executeSql('DROP TABLE IF EXISTS DEMO');
   tx.executeSql('CREATE TABLE IF NOT EXISTS CARD_DETAILS (card_holder_name,card_name,card_number,expiry_month,expiry_year )');
@@ -250,7 +250,7 @@ function populateDB(tx){
 function querySuccess(tx, results) {
     //console.log("Returned rows = " + results.rows.length);
     // this will be true since it was a select statement and so rowsAffected was 0
-     alert ( results.rowsAffected) ;
+     alert ( "The number of rows affected : " + results.rowsAffected) ;
        //console.log('No rows affected!');
         //return false;
     
@@ -264,7 +264,7 @@ function errorCB(err) {
 }
 
 function successCB() {
-    alert("success!");
+    alert("successfully connected to db!");
 }
 
 
