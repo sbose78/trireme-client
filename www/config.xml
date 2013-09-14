@@ -107,6 +107,9 @@
     <access origin="*"/> <!-- allow local pages -->
    
         <access origin="http://trireme.j.layershift.co.uk" /> 
+         <access origin="http://health-nodejstest.rhcloud.com" /> 
+
+        
 
 
 
