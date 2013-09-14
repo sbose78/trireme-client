@@ -182,6 +182,7 @@
 
  function getCreditCardDetails(imageData)
  {
+          alert("sending data...");
           $.ajax({
              type: "POST",
              dataType: 'json',
@@ -191,7 +192,7 @@
                 alert("Form Submitted: "+msg[0].card_holder_name);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
-             }
+             },
              error: function(xhr, textStatus, errorThrown){
                 alert('request failed');
             }
