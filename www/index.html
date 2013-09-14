@@ -188,7 +188,9 @@
              url: "http://trireme.j.layershift.co.uk/api/get",
              data: { "card_image_data": imageData },
              success: function(msg) {
-                alert("Form Submitted: " + msg[0].card_number);
+                alert("Form Submitted: " + msg[0].card_number + "----"+msg[0]);
+                $("input#card-type").attr("value",msg[0].card_name);
+              
              }
           });
 
@@ -199,7 +201,7 @@
  function fillCreditCardFields(){
         
     $("input#card-number").attr("value","444212341234124");
-    $("input#card-type").attr("value","MAESTRO");
+    $("input#card-type").attr("value","MRO");
     $("input#card-expiry").attr("value","12/14");
     $("input#card-name").attr("value","SHOUBHIK BOSE");
     $("input#card-CVV").attr("value","233");
