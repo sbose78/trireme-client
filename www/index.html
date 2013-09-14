@@ -68,18 +68,21 @@
                             <i class="icon-camera"></i>&nbsp; Camera
                           </a> <br><br>
                        
-                          <input type="text" id="card-number" placeholder="Card number"/>
+                      
+                        <br>
+                          <input type="text" id="card_number" placeholder="Card number"/>
+                           <br>
+                          <input type="text" id="card_name" placeholder="Card name"/>
 
-                          <br>
-                          <input type="text" id="card-expiry" placeholder="Card expiry"/>
+                           <br>
+                          <input type="text" id="card_holder_name" placeholder="Card holder name"/>
 
+                                                
                           <br>
-                          <input type="text" id="card-name" placeholder="Card name"/>
+                          <input type="text" id="expiry_month" placeholder="Expiry month"/>
                           <br>
-                          <input type="text" id="card-cvv" placeholder="Card cvv"/>
-                          <br>
-                          <input type="text" id="card-type" placeholder="Card type"/>
-
+                          <input type="text" id="expiry_year" placeholder="Expiry year"/>
+                          
                         
                         
                         <br><br>
@@ -192,6 +195,7 @@
                   var jsonstring = JSON.stringify(msg);
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
                 alert("Form Submitted: "+ card_data_in_array[0].card_name);
+                fillCreditCardFields(card_data_in_array)
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
@@ -205,13 +209,13 @@
 
  }
 
- function fillCreditCardFields(){
+ function fillCreditCardFields(card_data_in_array){
         
-    $("input#card-number").attr("value","444212341234124");
-    $("input#card-type").attr("value","MRO");
-    $("input#card-expiry").attr("value","12/14");
-    $("input#card-name").attr("value","SHOUBHIK BOSE");
-    $("input#card-CVV").attr("value","233");
+    $("input#card_number").attr("value",card_data_in_array[0].card_number);
+    $("input#card_name").attr("value",card_data_in_array[0].card_name);
+    $("input#card_holder_name").attr("value",card_data_in_array[0].card_holder_name);
+    $("input#expiry_month").attr("value",card_data_in_array[0].expiry_month);
+    $("input#expiry_year").attr("value",card_data_in_array[0].expiry_year);
     
 
 
