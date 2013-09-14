@@ -232,11 +232,14 @@ function saveCreditCardDetails(card_data_in_array)
   var db = window.openDatabase("cards2", "1.0","cards2", 1000000);
  
   db.transaction(populateDB, errorCB, successCB);
+  alert("select");
+  db.transaction(queryDB, errorCB, successCB);
+
 }
 
 function populateDB(tx){
 
-  alert ( 'INSERT INTO CARD_DETAILS (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ("'+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")');
+  alert ( 'INSERT INTO CARD_DETAIL (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ("'+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")');
 
   //tx.executeSql('DROP TABLE IF EXISTS DEMO');
   tx.executeSql('CREATE TABLE IF NOT EXISTS CARD_DETAIL (card_holder_name,card_name,card_number,expiry_month,expiry_year )');
@@ -245,6 +248,20 @@ function populateDB(tx){
 
   //tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
 
+}
+function queryDB(tx) {
+    tx.executeSql('SELECT * FROM CARD_DETAIL', [], querySuccess_select, errorCB);
+}
+
+function querySuccess_select(tx, results) {
+    console.log("Returned rows = " + results.rows.length);
+    // this will be true since it was a select statement and so rowsAffected was 0
+    if (!results.rowsAffected) {
+        console.log('No rows affected!');
+        return false;
+    }
+    // for an insert statement, this property will return the ID of the last inserted row
+    console.log("Last inserted row ID = " + results.insertId);
 }
 
 function querySuccess(tx, results) {
@@ -264,7 +281,7 @@ function errorCB(err) {
 }
 
 function successCB() {
-    alert("successfully connected to db!");
+    alert("successfully connected to tx");
 }
 
 
