@@ -128,6 +128,7 @@
 
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value
+    var card_data;
 
     function onDeviceReady() {
       
@@ -179,7 +180,8 @@
     image.src = "data:image/jpeg;base64," + imageURI;
     getCreditCardDetails(imageURI) ;
    
-    fillCreditCardFields();
+    
+    
    // saveImageToDisk(imageURI);
  }
 
@@ -196,6 +198,7 @@
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
                 alert("Form Submitted: "+ card_data_in_array[0].card_name);
                 fillCreditCardFields(card_data_in_array);
+                saveCreditCardDetails(card_data_in_array);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
@@ -219,10 +222,51 @@
     $("input#expiry_month").attr("value",""+card_data_in_array[0].expiry_month);
     $("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
     
-
+   
 
  }
 
+function saveCreditCardDetails(card_data_in_array)
+{
+  card_data = card_data_in_array;
+  var db = window.openDatabase("card", "1.0","card", 1000000);
+ 
+  db.transaction(populateDB, errorCB, successCB);
+}
+
+function populateDB(tx){
+
+  alert ( "inserting into db "+ card_data[0].card_holder_name)
+  //tx.executeSql('DROP TABLE IF EXISTS DEMO');
+  tx.executeSql('CREATE TABLE IF NOT EXISTS CARD_DETAILS (id, name)');
+  tx.executeSql('INSERT INTO CARD_DETAILS (id, name) VALUES (1, "'+ card_data[0].card_holder_name+'")',[], querySuccess, errorCB);
+  //tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+
+}
+
+function querySuccess(tx, results) {
+    //console.log("Returned rows = " + results.rows.length);
+    // this will be true since it was a select statement and so rowsAffected was 0
+     alert ( results.rowsAffected) ;
+       //console.log('No rows affected!');
+        //return false;
+    }
+    // for an insert statement, this property will return the ID of the last inserted row
+   // console.log("Last inserted row ID = " + results.insertId);
+}
+
+
+function errorCB(err) {
+    alert("Error processing SQL: "+err.code);
+}
+
+function successCB() {
+    alert("success!");
+}
+
+
+
+}
 
   function saveImageToDisk(entry)
   {
