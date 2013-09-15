@@ -79,6 +79,12 @@
 
 
     }
+
+  .saved-card:hover{
+
+     background-color: #FCF1C0;
+   }
+
     .card-mask {
         font-size:20px;
         margin-top:10px;
@@ -162,11 +168,11 @@
                        
 
                           <div id="card_space">
-                           <input class=" input-large" id="card_number" type="text" placeholder="Card number"/><br>
-                           <input class="input-small" id="expiry_month" type="text" placeholder="MM   /  YY"/>  &nbsp; 
-                           <input class="input-small" id="cvv_number" type="text" placeholder="CVV Num"/><br>
-                           <input class="input-large" id="card_holder_name" type="text" placeholder="Name of Card holder"/> <br>
-                           <input type="button" value = "Pay" class="pay-button btn btn-primary btn-medium"> 
+                           <input class=" input-large" id="card_number" type="text"/><br>
+                           <input class="input-small" id="expiry_month" type="text" />  &nbsp; 
+                           <input class="input-small" id="cvv_number" type="text" /><br>
+                           <input class="input-large" id="card_holder_name" type="text" /> <br>
+                           <input type="button" value = "Pay" class="pay-button btn btn-primary btn-medium"/> 
 
                         </div>
 <br><br>
@@ -185,7 +191,7 @@
 
                             <a onclick="takePhoto()" class="btn btn-large" href="#"><i class="icon-plus"></i> Add </a>
                                     &nbsp;&nbsp;
-                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="Scanned cards"/>
+                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="My saved cards"/>
 
                        <br><br><br>
 
@@ -222,10 +228,11 @@
 
 
 
- <script type="text/javascript" src="phonegap.js"></script>
+ <!--script type="text/javascript" src="phonegap.js"></-->
   <script type="text/javascript" src="js/jquery.min.js"></script>
 
         <script type="text/javascript">
+   
    
 
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -241,7 +248,7 @@
 
         $("#conversion-progress").hide();
       
-        alert("device is ready");
+       //        alert("device is ready");
         document.getElementById("read_status").innerHTML="device is ready!";
 /*
         var element = document.getElementById('deviceProperties');
@@ -270,7 +277,7 @@
   */
   }
   function takePhoto(){
-     alert("take photo");
+    // alert("take photo");
   //  fillCreditCardFields();
 /*
       navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 70, 
@@ -296,7 +303,7 @@
 
  function getCreditCardDetails(imageData)
  {
-          alert("sending data...");
+        //  alert("sending data...");
           $("#conversion-progress").show();
       
           $.ajax({
@@ -307,7 +314,7 @@
              success: function(msg) {
                   var jsonstring = JSON.stringify(msg);
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
-                  alert("Form Submitted: "+ card_data_in_array[0].card_name);
+          //        alert("Form Submitted: "+ card_data_in_array[0].card_name);
                   fillCreditCardFields(card_data_in_array);
                // saveCreditCardDetails(card_data_in_array);
              //   $("input#card-type").attr("value",msg[0].card_name);
@@ -320,7 +327,7 @@
              error: function(xhr, textStatus, errorThrown){
                $("#conversion-progress").hide();
       
-                alert('request failed '+textStatus+" "+errorThrown);
+               // alert('request failed '+textStatus+" "+errorThrown);
                 fillCreditCardFieldsOnError();
             }
 
@@ -338,7 +345,7 @@
     $("input#card_number").attr("value","4242428720133001");
     $("input#card_name").attr("value","VISA");
     $("input#card_holder_name").attr("value","Srinivas Iyengar");
-    $("input#expiry_month").attr("value","12");
+    $("input#expiry_month").attr("value","12/2016");
     //$("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
     
    
@@ -353,7 +360,7 @@
     $("input#card_number").attr("value",""+card_data_in_array[0].card_number);
     $("input#card_name").attr("value",""+card_data_in_array[0].card_name);
     $("input#card_holder_name").attr("value",""+card_data_in_array[0].card_holder_name);
-    $("input#expiry_month").attr("value",""+card_data_in_array[0].expiry_month);
+    $("input#expiry_month").attr("value",""+card_data_in_array[0].expiry_month+"/"+card_data_in_array[0].expiry_year);
     //$("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
     
    
@@ -366,7 +373,7 @@ function saveCreditCardDetails(card_data_in_array)
   var db = window.openDatabase("cards2", "1.0","cards2", 1000000);
  
   db.transaction(populateDB, errorCB, successCB);
-  alert("select");
+ // alert("select");
   db.transaction(queryDB, errorCB, successCB);
 
 }
@@ -510,6 +517,17 @@ function successCB() {
     function onFail(message) {
       alert('Failed because: ' + message);
     }
+
+ $("div.saved-card").click(function(e){
+         //  alert("clicked");
+           var card_number = $(this).find(".card-mask").text()  ;
+         //  alert(card_number);
+           $("input#card_number").attr("value",card_number);
+           $("input#card_name").attr("value","VISA");
+           $("input#card_holder_name").attr("value","Srinivas Iyengar");
+           $("input#expiry_month").attr("value","12/2016");
+                   
+    })   ;
 
 </script>
 
