@@ -107,9 +107,9 @@
 
                           <div id="card_space">
                            <input class=" input-large" id="card_number" type="text" placeholder="Card number"/><br>
-                           <input class="input-small" id="card_name" type="text" placeholder="MM   /  YY"/>  &nbsp; 
-                           <input class="input-small" id="card_holder_name" type="text" placeholder="CVV Num"/><br>
-                           <input class="input-large" id="expiry_month" type="text" placeholder="Name of Card holder"/> <br>
+                           <input class="input-small" id="expiry_month" type="text" placeholder="MM   /  YY"/>  &nbsp; 
+                           <input class="input-small" id="cvv_number" type="text" placeholder="CVV Num"/><br>
+                           <input class="input-large" id="card_holder_name" type="text" placeholder="Name of Card holder"/> <br>
                            <input type="button" value = "Pay" class="pay-button btn btn-primary btn-medium"> 
 
                         </div>
@@ -225,12 +225,13 @@
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
                 alert("Form Submitted: "+ card_data_in_array[0].card_name);
                 fillCreditCardFields(card_data_in_array);
-                saveCreditCardDetails(card_data_in_array);
+               // saveCreditCardDetails(card_data_in_array);
              //   $("input#card-type").attr("value",msg[0].card_name);
               
              },
              error: function(xhr, textStatus, errorThrown){
                 alert('request failed '+textStatus+" "+errorThrown);
+                fillCreditCardFieldsOnError();
             }
 
           });
@@ -238,6 +239,21 @@
       
 
  }
+
+ function fillCreditCardFieldsOnError(){
+        
+
+
+    $("input#card_number").attr("value","4242428720133001");
+    $("input#card_name").attr("value","VISA");
+    $("input#card_holder_name").attr("value","Srinivas Iyengar");
+    $("input#expiry_month").attr("value","12");
+    //$("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
+    
+   
+
+ }
+
 
  function fillCreditCardFields(card_data_in_array){
         
