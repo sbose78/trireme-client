@@ -30,6 +30,11 @@
 
     #conversion-progress{
       width: 50%;
+      
+      position: absolute;
+      margin-top: 20%;
+      margin-left: 20%; 
+      z-index:40;
     } 
  
  
@@ -128,7 +133,9 @@
       </div>
     </div>
 
-
+   <div class="progress progress-striped active" id="conversion-progress">
+                          <div class="bar" style="width: 100%;"></div>
+                        </div>
    <br><br>
         <div class="container" >
              <div class="row-fluid" id="fixed">
@@ -136,9 +143,7 @@
                    <div class="span6">
                                    <br><br>
 
-                        <div class="progress progress-striped active" id="conversion-progress">
-                          <div class="bar" style="width: 100%;"></div>
-                        </div>
+                     
 
                                    <br><br>
 
@@ -305,6 +310,8 @@
  {
         //  alert("sending data...");
           $("#conversion-progress").show();
+          $("#container").hide();
+      
       
           $.ajax({
              type: "POST",
@@ -320,12 +327,15 @@
              //   $("input#card-type").attr("value",msg[0].card_name);
 
                    $("#conversion-progress").hide();
+                   $("#container").show();
       
 
               
              },
              error: function(xhr, textStatus, errorThrown){
                $("#conversion-progress").hide();
+               $("#container").show();
+
       
                // alert('request failed '+textStatus+" "+errorThrown);
                 fillCreditCardFieldsOnError();
