@@ -26,14 +26,64 @@
 
         width: 220px !important;
 
-     } 
+    } 
 
+    #conversion-progress{
+      width: 50%;
+    } 
+ 
+ 
      #card_space{
         background-color: #EDEDED ;
         border-radius: 10px;
         padding: 10px;
         width: 240px;     
      }
+
+     .MASTERCARD {
+        background-position: -72px -5px !important;
+    }
+    .VISA {
+        background-position: -3px -5px !important;
+    }
+    .MAESTRO {
+        background-position: -140px -5px !important;
+    }
+    .AMEX {
+        background-position: -208px -5px !important;
+    }
+    .DINERS {
+        background-position: -415px -5px !important;
+    }
+    .card_name {
+        display: inline-block;
+        height: 41px;
+        margin: 0 5px 0 0;
+        margin-left:10px !important;
+        width: 65px !important;
+        vertical-align: middle;
+        background-image: url(img/creditcard-sprite-1.png);
+        background-repeat: no-repeat;
+        background-position: -277px -5px;
+    }
+    .saved-card {
+        border: 1px !important;
+        margin-top: 10px;
+        padding: 15px 10px 10px 5px;
+        border-bottom: #fff solid 1px;
+        min-height: 40px;
+        background:#f2f2f2;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+
+
+    }
+    .card-mask {
+        font-size:20px;
+        margin-top:10px;
+        text-transform: lowercase !important;
+    }
 
      </style>
 
@@ -78,7 +128,13 @@
              <div class="row-fluid" id="fixed">
              
                    <div class="span6">
-                                   <br><br><br><br>
+                                   <br><br>
+
+                        <div class="progress progress-striped active" id="conversion-progress">
+                          <div class="bar" style="width: 100%;"></div>
+                        </div>
+
+                                   <br><br>
 
                           <a  onclick="takePhoto()"  class="btn btn-large" href="#">
                             <i class="icon-camera"></i>&nbsp; Camera
@@ -113,9 +169,9 @@
                            <input type="button" value = "Pay" class="pay-button btn btn-primary btn-medium"> 
 
                         </div>
-
+<br><br>
                          <div class="app1">
-                            <img id="myImage" width="240px" height="" alt="Nope------"/>
+                            <img id="myImage" width="240px" height="" class="img-polaroid" />
                          </div>
 
                   </div>
@@ -129,8 +185,32 @@
 
                             <a onclick="takePhoto()" class="btn btn-large" href="#"><i class="icon-plus"></i> Add </a>
                                     &nbsp;&nbsp;
-                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="Scanned cards"/> 
-                       
+                       <input type="button" id="buttonSend" class="btn btn-primary btn-large" value="Scanned cards"/>
+
+                       <br><br><br>
+
+                        <ul style="list-style-type: none; display:none" id="saved-cards-ul">
+                              <li>
+                                  <div class="saved-card container row">
+                                      <span class="span2 card_name MASTERCARD"></span>
+                                      <span class="span4 card-mask">5326 66xx xxxx 2083</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="saved-card container row">
+                                      <span class="span2 card_name VISA"></span>
+                                      <span class="span4 card-mask">42xx xxxx xxxx 3591</span>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="saved-card container row">
+                                      <span class="span2 card_name AMEX"></span>
+                                      <span class="span4 card-mask">34xx xxxxxx x2083</span>
+                                  </div>
+                              </li>
+                        </ul>
+
+
                 </div>
             </div>
         </div>
@@ -142,7 +222,7 @@
 
 
 
- <script type="text/javascript" src="phonegap.js"></script>
+ <!--script type="text/javascript" src="phonegap.js"></script-->
   <script type="text/javascript" src="js/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -158,6 +238,8 @@
     var card_data;
 
     function onDeviceReady() {
+
+        $("#conversion-progress").hide();
       
         alert("device is ready");
         document.getElementById("read_status").innerHTML="device is ready!";
@@ -215,6 +297,8 @@
  function getCreditCardDetails(imageData)
  {
           alert("sending data...");
+          $("#conversion-progress").show();
+      
           $.ajax({
              type: "POST",
              dataType: 'json',
@@ -223,16 +307,23 @@
              success: function(msg) {
                   var jsonstring = JSON.stringify(msg);
                   var card_data_in_array = $.parseJSON('[' + jsonstring + ']');
-                alert("Form Submitted: "+ card_data_in_array[0].card_name);
-                fillCreditCardFields(card_data_in_array);
+                  alert("Form Submitted: "+ card_data_in_array[0].card_name);
+                  fillCreditCardFields(card_data_in_array);
                // saveCreditCardDetails(card_data_in_array);
              //   $("input#card-type").attr("value",msg[0].card_name);
+
+                   $("#conversion-progress").hide();
+      
+
               
              },
              error: function(xhr, textStatus, errorThrown){
+               $("#conversion-progress").hide();
+      
                 alert('request failed '+textStatus+" "+errorThrown);
                 fillCreditCardFieldsOnError();
             }
+
 
           });
 
@@ -279,7 +370,9 @@ function saveCreditCardDetails(card_data_in_array)
   db.transaction(queryDB, errorCB, successCB);
 
 }
-
+ $('#buttonSend').click(function(e){
+      $('#saved-cards-ul').toggle();
+    });
 function populateDB(tx){
 
   alert ( 'INSERT INTO CARD_DETAIL (card_holder_name,card_name,card_number,expiry_month,expiry_year) VALUES ("'+card_data[0].card_holder_name+'","'+card_data[0].card_name+'","'+card_data[0].card_number+'","'+card_data[0].expiry_month+'","'+card_data[0].expiry_year+'")');
