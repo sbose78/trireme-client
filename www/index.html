@@ -19,7 +19,23 @@
 -->
 <html>
     <head>
+     
+     <style type="text/css">
 
+     .pay-button{
+
+        width: 220px !important;
+
+     } 
+
+     #card_space{
+        background-color: #EDEDED ;
+        border-radius: 10px;
+        padding: 10px;
+        width: 240px;     
+     }
+
+     </style>
 
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -70,6 +86,7 @@
                        
                       
                         <br>
+                        <!--
                           <input type="text" id="card_number" placeholder="Card number"/>
                            <br>
                           <input type="text" id="card_name" placeholder="Card name"/>
@@ -84,14 +101,27 @@
                           <input type="text" id="expiry_year" placeholder="Expiry year"/>
                           
                         
-                        
+                        -->
                         <br><br>
-                   <div class="app1">
-                            <img id="myImage" alt="Nope------"/>
+                       
+
+                          <div id="card_space">
+                           <input class=" input-large" id="card_number" type="text" placeholder="Card number"/><br>
+                           <input class="input-small" id="card_name" type="text" placeholder="MM   /  YY"/>  &nbsp; 
+                           <input class="input-small" id="card_holder_name" type="text" placeholder="CVV Num"/><br>
+                           <input class="input-large" id="expiry_month" type="text" placeholder="Name of Card holder"/> <br>
+                           <input type="button" value = "Pay" class="pay-button btn btn-primary btn-medium"> 
+
+                        </div>
+
+                         <div class="app1">
+                            <img id="myImage" width="240px" height="" alt="Nope------"/>
                          </div>
+
                   </div>
 
-
+               
+                 
                 <div class="span6">
                     <br><br><br><br>
  
@@ -112,10 +142,7 @@
 
 
 
-<!--
-       
--->
- <script type="text/javascript" src="phonegap.js"></script>
+ <!--script type="text/javascript" src="phonegap.js"></script-->
   <script type="text/javascript" src="js/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -220,7 +247,7 @@
     $("input#card_name").attr("value",""+card_data_in_array[0].card_name);
     $("input#card_holder_name").attr("value",""+card_data_in_array[0].card_holder_name);
     $("input#expiry_month").attr("value",""+card_data_in_array[0].expiry_month);
-    $("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
+    //$("input#expiry_year").attr("value",""+card_data_in_array[0].expiry_year);
     
    
 
