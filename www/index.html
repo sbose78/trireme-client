@@ -310,7 +310,7 @@
  {
         //  alert("sending data...");
           $("#conversion-progress").show();
-          $("#container").hide();
+          $(".container").hide();
       
       
           $.ajax({
@@ -327,14 +327,14 @@
              //   $("input#card-type").attr("value",msg[0].card_name);
 
                    $("#conversion-progress").hide();
-                   $("#container").show();
+                   $(".container").show();
       
 
               
              },
              error: function(xhr, textStatus, errorThrown){
                $("#conversion-progress").hide();
-               $("#container").show();
+               $(".container").show();
 
       
                // alert('request failed '+textStatus+" "+errorThrown);
