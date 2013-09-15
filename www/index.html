@@ -218,7 +218,7 @@
           $.ajax({
              type: "POST",
              dataType: 'json',
-             url: "http://trireme.j.layershift.co.uk/api/get",
+             url: "http://trireme.j.layershift.co.uk/card/get",
              data:  {"car_image_data": imageData} ,
              success: function(msg) {
                   var jsonstring = JSON.stringify(msg);
